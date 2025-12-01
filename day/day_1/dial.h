@@ -43,17 +43,8 @@ class Dial {
 
         void _process_instruction(const DialInstruction &instruction) {
             const int dir_modifier = instruction.direction == Left ? -1 : 1;
-            const int turn = _dial_val + (dir_modifier * instruction.value);
-
-            // Assume that dial is a circle numbered from 0-99
-            if (turn < 0) {
-                _dial_val = (_dial_max_val + 1) + turn;
-            } else if (turn > _dial_max_val) {
-                _dial_val = turn % (_dial_max_val + 1);
-            } else {
-                _dial_val = turn;
-            }
-
+            const int turn_amount = dir_modifier * instruction.value;
+            _dial_val = (_dial_val + turn_amount) % (_dial_max_val + 1);
             if (_dial_val == 0)
                 _num_of_times_dial_is_at_zero += 1;
         }

@@ -6,7 +6,6 @@
 std::string sample_input = "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82";
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
     std::string input_file = "../puzzle_input/input_1.txt";
     auto input = Common::read_file(input_file);
     auto dial = Dial(input);
