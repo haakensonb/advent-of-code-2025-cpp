@@ -9,7 +9,8 @@ int main() {
     std::string input_file = "../puzzle_input/input_1.txt";
     auto input = Common::read_file(input_file);
     auto dial = Dial(input);
-    int password = dial.get_password();
-    std::cout << "Day 1, part 1: " << password << std::endl;
+    // auto dial = Dial(sample_input);
+    std::cout << "Day 1, part 1: " << dial.get_password() << std::endl;
+    std::cout << "Day 1, part 2: " << dial.get_password_part_2() << std::endl;
     return 0;
 }
