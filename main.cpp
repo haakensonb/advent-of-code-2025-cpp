@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "day/day_1/day_1.h"
+#include "day/day_2/day_2.h"
 #include "common/common.h"
 
 int main() {

@@ -23,3 +23,7 @@ FetchContent_MakeAvailable(googletest)
 add_executable(day_1_test test/day_1_test.cpp)
 target_link_libraries(day_1_test GTest::gtest_main)
 add_test(NAME Day1Tests COMMAND day_1_test)
+
+add_executable(day_2_test test/day_2_test.cpp)
+target_link_libraries(day_2_test GTest::gtest_main)
+add_test(NAME Day2Tests COMMAND day_2_test)

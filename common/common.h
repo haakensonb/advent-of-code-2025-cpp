@@ -40,6 +40,7 @@ namespace Common {
     std::map<std::string, std::unique_ptr<Day>> create_input_to_day_map() {
         std::map<std::string, std::unique_ptr<Day>> map;
         map[PROJECT_ROOT "/puzzle_input/input_1.txt"] = std::make_unique<Day_1>(read_file(PROJECT_ROOT "/puzzle_input/input_1.txt"));
+        map[PROJECT_ROOT "/puzzle_input/input_2.txt"] = std::make_unique<Day_2>(read_file(PROJECT_ROOT "/puzzle_input/input_2.txt"));
         return map;
     }
 
