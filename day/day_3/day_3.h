@@ -1,6 +1,6 @@
 #ifndef DAY_3_H
 #define DAY_3_H
-#include <iostream>
+#include <numeric>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -44,10 +44,10 @@ class Day_3 : public Day {
     };
 
     std::string solve_part_1() {
-        int total_joltage = 0;
-        for (auto& battery_bank : _battery_banks) {
-            total_joltage += battery_bank.get_max_joltage();
-        }
+        int total_joltage =
+            std::accumulate(_battery_banks.begin(), _battery_banks.end(), 0,
+                            [](int current_sum, BatteryBank& b) { return current_sum + b.get_max_joltage(); });
+
         return std::to_string(total_joltage);
     }
 
