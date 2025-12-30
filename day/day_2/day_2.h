@@ -4,6 +4,7 @@
 #include <vector>
 #include <sstream>
 #include <set>
+#include <functional>
 #include "common/day.h"
 
 struct InputRange {
@@ -20,11 +21,19 @@ class Day_2 : public Day {
         };
 
         std::string solve_part_1(){
+          return solve(is_invalid_id);
+        }
+
+        std::string solve_part_2(){
+          return solve(is_invalid_id_part_2);
+        }
+
+        std::string solve(std::function<bool(long)> is_invalid_id_func){
           long invalid_ids_sum = 0L;
           for (auto& input_range : _input_ranges){
             for (long i = input_range.start_num; i <= input_range.end_num; i++){
-              if (is_invalid_id(i)){
-                // std::cout << "invalid id: " << i << std::endl;
+              if (is_invalid_id_func(i)){
+                //std::cout << "invalid id: " << i << std::endl;
                 invalid_ids_sum += i;
               }
             }
@@ -32,11 +41,17 @@ class Day_2 : public Day {
           return std::to_string(invalid_ids_sum);
         }
 
-        std::string solve_part_2(){
-          return "";
+        static bool is_invalid_id(long id){
+          std::string id_str = std::to_string(id);
+          int midpoint = id_str.length() / 2;
+          std::string half_1 = id_str.substr(0, midpoint);
+          std::string half_2 = id_str.substr(midpoint);
+          if (half_1 == half_2)
+            return true;
+          return false;
         }
 
-        // bool is_invalid_id(long id){
+        // static bool is_invalid_id_part_2(long id){
         //   std::set<std::string> seen;
         //   // Generate all possible contiguous substrings
         //   std::string id_str = std::to_string(id);
@@ -56,18 +71,37 @@ class Day_2 : public Day {
         //   return false;
         // }
 
-        bool is_invalid_id(long id){
+        static bool is_invalid_id_part_2(long id){
           std::string id_str = std::to_string(id);
-          int midpoint = id_str.length() / 2;
-          std::string half_1 = id_str.substr(0, midpoint);
-          std::string half_2 = id_str.substr(midpoint);
-          if (half_1 == half_2)
-            return true;
+
+          // target_len / cur_len = num of times to multiply
+          int target_len = id_str.length();
+          int cur_len = 1;
+          while (cur_len <= target_len / 2){
+            int n = target_len / cur_len;
+            std::string cur_substr = id_str.substr(0, cur_len);
+            std::string new_str = repeated_str(cur_substr, n);
+            if (new_str == id_str){
+              return true;
+            }
+            cur_len += 1;
+          }
           return false;
+
+        }
+
+        static std::string repeated_str(const std::string& str, int n){
+          std::string result = "";
+          for (int i = 0; i < n; i++){
+            result += str;
+          }
+          return result;
         }
 
     private:
         std::vector<InputRange> _input_ranges;
+
+
 
         void load_input(std::string input){
           std::stringstream ss(input);

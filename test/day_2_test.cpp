@@ -32,3 +32,25 @@ TEST(Day2Test, Input111) {
     bool result = day.is_invalid_id(111L);
     EXPECT_EQ(result, false);
 }
+
+TEST(Day2Test, SolvePart2){
+  Day_2 day(SAMPLE_INPUT);
+  std::string result = day.solve_part_2();
+  EXPECT_EQ(result, "4174379265");
+}
+
+TEST(Day2Test, Input111Part2) {
+    Day_2 day(SAMPLE_INPUT);
+    bool result = day.is_invalid_id_part_2(111L);
+    EXPECT_EQ(result, true);
+}
+
+TEST(Day2Test, Input100Part2) {
+    Day_2 day(SAMPLE_INPUT);
+    bool result = day.is_invalid_id_part_2(100L);
+    EXPECT_EQ(result, false);
+}
+
+TEST (Day2Test, RepeatedStr){
+  EXPECT_EQ(Day_2::repeated_str("a", 3), "aaa");
+}
