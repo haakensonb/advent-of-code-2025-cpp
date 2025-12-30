@@ -44,3 +44,6 @@ puzzle_input
 .idea
 build
 .vscode
+
+compile_commands.json
+.cache/
