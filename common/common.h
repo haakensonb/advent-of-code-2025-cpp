@@ -25,6 +25,21 @@ std::string read_file(std::string path) {
     return buffer.str();
 }
 
+int extract_numeric_substring(const std::string &str) {
+    // Extract number at the end of puzzle input filename
+    char target_start = '_';
+    char target_end = '.';
+    auto start_index = str.find_last_of(target_start);
+    auto end_index = str.find(target_end);
+    if (start_index != std::string::npos && end_index != std::string::npos) {
+        // Adjust offsets by 1 to exclude '_' and '.'
+        auto substr_len = end_index - start_index - 1;
+        auto substring = str.substr(start_index + 1, substr_len);
+        return std::stoi(substring);
+    }
+    return 0;
+}
+
 std::vector<std::string> get_files_in_dir(const std::string &dir_path) {
     std::vector<std::string> files;
     try {
@@ -36,6 +51,13 @@ std::vector<std::string> get_files_in_dir(const std::string &dir_path) {
     } catch (const std::filesystem::filesystem_error &e) {
         std::cerr << "Filesystem error: " << e.what() << std::endl;
     }
+
+    std::sort(files.begin(), files.end(), [](const std::string &a, const std::string &b) {
+        int num_a = extract_numeric_substring(a);
+        int num_b = extract_numeric_substring(b);
+        // ascending order
+        return num_a < num_b;
+    });
 
     return files;
 }
