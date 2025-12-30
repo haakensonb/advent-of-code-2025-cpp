@@ -10,6 +10,7 @@
 
 #include "../day/day_1/day_1.h"
 #include "../day/day_2/day_2.h"
+#include "../day/day_3/day_3.h"
 #include "day.h"
 
 namespace Common {
@@ -68,6 +69,9 @@ std::map<std::string, std::unique_ptr<Day>> create_input_to_day_map() {
         std::make_unique<Day_1>(read_file(PROJECT_ROOT "/puzzle_input/input_1.txt"));
     map[PROJECT_ROOT "/puzzle_input/input_2.txt"] =
         std::make_unique<Day_2>(read_file(PROJECT_ROOT "/puzzle_input/input_2.txt"));
+    map[PROJECT_ROOT "/puzzle_input/input_3.txt"] =
+        std::make_unique<Day_3>(read_file(PROJECT_ROOT "/puzzle_input/input_3.txt"));
+
     return map;
 }
 

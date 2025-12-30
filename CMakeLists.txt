@@ -27,3 +27,8 @@ add_test(NAME Day1Tests COMMAND day_1_test)
 add_executable(day_2_test test/day_2_test.cpp)
 target_link_libraries(day_2_test GTest::gtest_main)
 add_test(NAME Day2Tests COMMAND day_2_test)
+
+add_executable(day_3_test test/day_3_test.cpp)
+target_link_libraries(day_3_test GTest::gtest_main)
+add_test(NAME Day3Tests COMMAND day_3_test)
+
